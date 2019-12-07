@@ -31,14 +31,12 @@ public class UserController {
 	public UserRest createUser(@RequestBody UserDetailsRequestModel detalleDeUsuario) {
 		System.out.println("HTTP POST :: UserController.createUser() ha sido invocado"); 
 		
-		UserRest returnValue = new UserRest();
-		
 		UserDto userDto = new UserDto();
 		BeanUtils.copyProperties(detalleDeUsuario, userDto);
-		
 		UserDto createdUser = userService.createUser(userDto);
-		BeanUtils.copyProperties(createdUser, returnValue);
 		
+		UserRest returnValue = new UserRest();
+		BeanUtils.copyProperties(createdUser, returnValue);
 		return returnValue;
 	}
 	
